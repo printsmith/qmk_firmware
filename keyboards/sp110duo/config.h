@@ -12,9 +12,7 @@
 #define SPI_DRIVER SPID1
 #define SPI_SCK_PIN GP13
 #define SPI_MOSI_PIN GP12
-// We don't actually use MISO, so set it to a pin we don't use.
-// Otherwise it likely get's tripped up as we use GP16 for D/C
-#define SPI_MISO_PIN GP25
+#define SPI_MISO_PIN NO_PIN // We don't actually use MISO, so we set it to NO_PIN
 
 //// LCD Configuration
 #define LCD_RST_PIN GP14
