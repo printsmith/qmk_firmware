@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "sp110duo.h"
+//#include "sp110duo.h"
 
 #include <string.h>
 #include <math.h>
@@ -26,10 +26,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "config.h"
 #include "qp.h"
 
+
 void keyboard_post_init_kb(void) {
     // Enable RGB current limiter and wait for a bit before allowing RGB to continue
     setPinOutput(RGB_ENABLE_PIN);
-    writePinHigh(RGB_ENABLE_PIN);
+    //writePinHigh(RGB_ENABLE_PIN);
+    writePinLow(RGB_ENABLE_PIN);
     wait_ms(100);
 
     // Offload to the user func

@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #pragma once
+#define MATRIX_ROWS 6
+#define MATRIX_COLS 20
 
 /* Bootloeader defs for RP2040 */
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET
@@ -33,16 +35,8 @@
 // RGB configuration
 #define RGB_ENABLE_PIN GP28
 
-// RGB definitions
-#define RGBLED_NUM 			108		// Number of LEDs on board  
-#define RGBLIGHT_HUE_STEP 	8		// Number of steps to cycle through the hue by
-#define RGBLIGHT_SAT_STEP 	8 		// Number of steps to increment the saturation by
-#define RGBLIGHT_VAL_STEP 	8		// Number of steps to increment the brightness by
-#define RGBLIGHT_LIMIT_VAL  50		// Maximum brightness. Using SK6803 mini-e each draw around 3mA at idle.
-#define RGBLIGHT_SLEEP 				// RGB will turn off when PC is put to sleep
-
-/* turn off effects when suspended */
-#define RGB_DISABLE_WHEN_USB_SUSPENDED
+// RGB definitions 
+#define RGB_MATRIX_LED_COUNT    108		// Number of LEDs on board  
 
 /* Define lighting layers for using leds to display layers, caps lock, and other useful things */
 //#define RGBLIGHT_LAYERS
@@ -51,4 +45,7 @@
 #define QUANTUM_PAINTER_LOAD_FONTS_TO_RAM TRUE
 #define QUANTUM_PAINTER_PIXDATA_BUFFER_SIZE 128
 // #define QUANTUM_PAINTER_DEBUG
+
+#define BOOTMAGIC_LITE_ROW 1
+#define BOOTMAGIC_LITE_COLUMN 0
 
