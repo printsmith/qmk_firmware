@@ -21,12 +21,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdbool.h>
 #include "wait.h"
 #include "util.h"
-#include "config.h"
 #include "matrix.h"
+#include "config.h"
 #include "quantum.h"
 #include "debounce.h"
 #include "print.h"
-
 
 // How long the scanning code waits for changed io to settle.
 #define MATRIX_IO_DELAY 30
@@ -128,24 +127,23 @@ void store_old_matrix(matrix_row_t current_matrix[]) {
 
 bool has_matrix_changed(matrix_row_t current_matrix[]) {
     for (uint8_t i = 0; i < MATRIX_ROWS; i++) {
-        if (previous_matrix[i] != current_matrix[i]) 
-            return true;
+        if (previous_matrix[i] != current_matrix[i]) return true;
     }
     return false;
 }
 
 bool matrix_scan_custom(matrix_row_t current_matrix[]) {
     store_old_matrix(current_matrix);
-
     // Set row, read cols
     for (uint8_t current_row = 0; current_row < MATRIX_ROWS-1; current_row++) {
         read_cols_on_row(current_matrix, current_row);
     }
-    
     // Set col, read rows
     for (uint8_t current_col = 0; current_col < MATRIX_COLS/2; current_col++) {
         read_rows_on_col(current_matrix, current_col);
     }
+
+    fix_encoder_action(current_matrix);
 
     return has_matrix_changed(current_matrix);
 }
