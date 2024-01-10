@@ -32,6 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_IO_DELAY 30
 
 #define COL_SHIFTER ((uint32_t)1)
+#define ROW_SHIFTER ((uint32_t)1)
 
 static const pin_t row_pins[] = MATRIX_ROW_PINS;
 static const pin_t col_pins[] = MATRIX_COL_PINS;
@@ -76,14 +77,13 @@ static void read_cols_on_row(matrix_row_t current_matrix[], uint16_t current_row
 
     // For each col...
     for (uint16_t col_index = 0; col_index < MATRIX_COLS / 2; col_index++) {
-        uint16_t column_index_bitmask = COL_SHIFTER << ((col_index * 2) + 1);
         // Check row pin state
         if (readPin(col_pins[col_index*2])) {
             // Pin HI, clear col bit
-            current_matrix[current_row] &= ~column_index_bitmask;
+            current_matrix[current_row] &= ~(ROW_SHIFTER << ((col_index*2) + 1));
         } else {
             // Pin LO, set col bit
-            current_matrix[current_row] |= column_index_bitmask;
+            current_matrix[current_row] |= (ROW_SHIFTER << ((col_index*2) + 1));
         }
     }
 
