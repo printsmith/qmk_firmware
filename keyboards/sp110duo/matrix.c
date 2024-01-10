@@ -31,7 +31,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // How long the scanning code waits for changed io to settle.
 #define MATRIX_IO_DELAY 30
 
-#define COL_SHIFTER ((uint16_t)1)
+#define COL_SHIFTER ((uint32_t)1)
+#define ROW_SHIFTER ((uint32_t)1)
 
 static const pin_t row_pins[] = MATRIX_ROW_PINS;
 static const pin_t col_pins[] = MATRIX_COL_PINS;
@@ -75,7 +76,9 @@ static void read_cols_on_row(matrix_row_t current_matrix[], uint8_t current_row)
     // For each col...
     for (uint8_t col_index = 0; col_index < MATRIX_COLS / 2; col_index++) {
         uint16_t column_index_bitmask = COL_SHIFTER << ((col_index * 2) + 1);
+        //uint8_t real_col_index = (current_row < MATRIX_ROWS / 2) ? col_index : col_index + MATRIX_COLS / 2;
         // Check row pin state
+        //if (readPin(col_pins[real_col_index])) {
         if (readPin(col_pins[col_index*2])) {
             // Pin HI, clear col bit
             current_matrix[current_row] &= ~column_index_bitmask;
@@ -96,15 +99,23 @@ static void read_rows_on_col(matrix_row_t current_matrix[], uint8_t current_col)
 
     uint16_t column_index_bitmask = COL_SHIFTER << (current_col * 2);
     // For each row...
-    for (uint8_t row_index = 0; row_index < MATRIX_ROWS-1; row_index++) {
+    for (uint8_t row_index = 0; row_index < MATRIX_ROWS; row_index++) {
         // Check row pin state
+        /*
+        if (readPin(row_pins[row_index])) {
+            // Pin HI, clear col bit
+            current_matrix[row_index] &= ~(1 << (current_col * 2));
+        } else {
+            // Pin LO, set col bit
+            current_matrix[row_index] |= (1 << (current_col * 2));
+        }*/
         if (readPin(row_pins[row_index])) {
             // Pin HI, clear col bit
             current_matrix[row_index] &= ~column_index_bitmask;
         } else {
             // Pin LO, set col bit
             current_matrix[row_index] |= column_index_bitmask;
-        }
+        }        
     }
     // Unselect col
     unselect_col(current_col*2);
@@ -136,22 +147,15 @@ bool has_matrix_changed(matrix_row_t current_matrix[]) {
 
 bool matrix_scan_custom(matrix_row_t current_matrix[]) {
     store_old_matrix(current_matrix);
+
     // Set row, read cols
-    for (uint8_t current_row = 0; current_row < MATRIX_ROWS-1; current_row++) {
+    for (uint8_t current_row = 0; current_row < MATRIX_ROWS; current_row++) {
         read_cols_on_row(current_matrix, current_row);
     }
+
     // Set col, read rows
-    for (uint8_t current_col = 0; current_col < MATRIX_COLS/2; current_col++) {
+    for (uint8_t current_col = 0; current_col < MATRIX_COLS / 2; current_col++) {
         read_rows_on_col(current_matrix, current_col);
     }
-
     return has_matrix_changed(current_matrix);
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  // If console is enabled, it will print the matrix position and status of each key pressed
-#ifdef CONSOLE_ENABLE
-    uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
-#endif 
-  return true;
 }
