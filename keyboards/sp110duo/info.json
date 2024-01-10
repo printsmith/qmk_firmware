@@ -7,11 +7,15 @@
     "features": {
         "bootmagic": true,
         "console": true,
+        "command": false,
         "encoder": true,
         "mousekey": true,
         "extrakey": true,
-        "nkro": true,
+        "nkro": false,
         "rgb_matrix": true
+    },
+    "bootmagic": {
+        "matrix": [1, 1]
     },
     "encoder": {
         "enabled": true,
