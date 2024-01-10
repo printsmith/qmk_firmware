@@ -34,11 +34,10 @@ void keyboard_post_init_kb(void) {
     writePinLow(RGB_ENABLE_PIN);
     wait_ms(100);
     debug_enable=true;
-    debug_matrix=true;
+    //debug_matrix=true;
     // Offload to the user func
     keyboard_post_init_user();
 }
-
 
 /*
 static painter_device_t lcd;

@@ -11,6 +11,7 @@ enum custom_keycodes {          // Make sure have the awesome keycode ready
 };
 
 // This will do most of the grunt work with the keycodes.
+/*
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) { 
     case ALT_TAB:
@@ -28,7 +29,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
-
+*/
 // The very important timer.
 void matrix_scan_user(void) { 
   if (is_alt_tab_active) {
