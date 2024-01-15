@@ -16,7 +16,7 @@
 
 //// LCD Configuration
 #define LCD_RST_PIN GP13
-#define LCD_CS_PIN GP22
+#define LCD_CS_PIN GP17
 #define LCD_DC_PIN GP18
 
 #define QUANTUM_PAINTER_DISPLAY_TIMEOUT 0   // Milliseconds that display will remain on after last input. 0 to stay on indefinitely.
@@ -24,6 +24,12 @@
 //#define QUANTUM_PAINTER_LOAD_FONTS_TO_RAM TRUE
 //#define QUANTUM_PAINTER_PIXDATA_BUFFER_SIZE 128
 #define QUANTUM_PAINTER_DEBUG TRUE
+
+// Set screen size
+#define LCD_WIDTH 240
+#define LCD_HEIGHT 320
+#define LCD_SPI_DIVISOR 32 // tested with 8 as well
+#define SPI_MODE 3
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 //#define DEBOUNCE 5

@@ -31,12 +31,6 @@ painter_device_t lcd;
 //static painter_image_handle_t image;
 //static painter_font_handle_t font;
 
-// Set screen size
-const int LCD_WIDTH = 240;
-const int LCD_HEIGHT = 320;
-const int LCD_SPI_DIVISOR = 32; // tested with 8 as well
-const int SPI_MODE = 0;
-
 void keyboard_post_init_kb(void) {
     // Enable RGB current limiter and wait for a bit before allowing RGB to continue
     setPinOutput(RGB_ENABLE_PIN);
@@ -53,12 +47,12 @@ void keyboard_post_init_kb(void) {
     wait_ms(150);
 
     // Initialise the LCD
-    lcd = qp_st7789_make_spi_device(LCD_WIDTH, LCD_HEIGHT, LCD_CS_PIN, LCD_DC_PIN, LCD_RST_PIN, LCD_SPI_DIVISOR, SPI_MODE);
+    lcd = qp_st7735_make_spi_device(LCD_WIDTH, LCD_HEIGHT, LCD_CS_PIN, LCD_DC_PIN, LCD_RST_PIN, LCD_SPI_DIVISOR, SPI_MODE);
     qp_init(lcd, QP_ROTATION_0);
 
     // Turn on the LCD and clear the display
     qp_power(lcd, true);
-    qp_rect(lcd, 0, 0, LCD_WIDTH, LCD_HEIGHT, 127, 230, 255, true);
+    qp_rect(lcd, 0, 0, LCD_WIDTH, LCD_HEIGHT, 127, 127, 255, true);
     //qp_flush(lcd);
     // font = qp_load_font_mem(font_iosevka11);
     // if (font != NULL) {
