@@ -10,17 +10,20 @@
 
 //// SPI Configuration
 #define SPI_DRIVER SPID1
-#define SPI_SCK_PIN GP13
-#define SPI_MOSI_PIN GP12
+#define SPI_SCK_PIN GP14
+#define SPI_MOSI_PIN GP11
 #define SPI_MISO_PIN NO_PIN // We don't actually use MISO, so we set it to NO_PIN
 
 //// LCD Configuration
-#define LCD_RST_PIN GP14
-#define LCD_CS_PIN 	GP22
-#define LCD_DC_PIN 	GP18
-#ifndef DISPLAY_ACTIVITY_TIMEOUT
-#    define DISPLAY_ACTIVITY_TIMEOUT 30000
-#endif // DISPLAY_ACTIVITY_TIMEOUT
+#define LCD_RST_PIN GP13
+#define LCD_CS_PIN GP22
+#define LCD_DC_PIN GP18
+
+#define QUANTUM_PAINTER_DISPLAY_TIMEOUT 0   // Milliseconds that display will remain on after last input. 0 to stay on indefinitely.
+#define QUANTUM_PAINTER_SUPPORTS_256_PALETTE TRUE
+//#define QUANTUM_PAINTER_LOAD_FONTS_TO_RAM TRUE
+//#define QUANTUM_PAINTER_PIXDATA_BUFFER_SIZE 128
+#define QUANTUM_PAINTER_DEBUG TRUE
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 //#define DEBOUNCE 5
@@ -39,8 +42,4 @@
 /* Define lighting layers for using leds to display layers, caps lock, and other useful things */
 //#define RGBLIGHT_LAYERS
 
-#define QUANTUM_PAINTER_SUPPORTS_256_PALETTE TRUE
-#define QUANTUM_PAINTER_LOAD_FONTS_TO_RAM TRUE
-#define QUANTUM_PAINTER_PIXDATA_BUFFER_SIZE 128
-// #define QUANTUM_PAINTER_DEBUG
 
