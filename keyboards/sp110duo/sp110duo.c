@@ -25,13 +25,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "stdlib.h"
 #include "config.h"
 #include "qp.h"
-
+#include "graphics/qmk_logo.qgf.h"
 
 painter_device_t lcd;
-//static painter_image_handle_t image;
+painter_image_handle_t splash;
 //static painter_font_handle_t font;
 
 void keyboard_post_init_kb(void) {
+    splash = qp_load_image_mem(gfx_qmk_logo);
     // Enable RGB current limiter and wait for a bit before allowing RGB to continue
     setPinOutput(RGB_ENABLE_PIN);
     //writePinHigh(RGB_ENABLE_PIN);
@@ -48,16 +49,14 @@ void keyboard_post_init_kb(void) {
 
     // Initialise the LCD
     lcd = qp_st7735_make_spi_device(LCD_WIDTH, LCD_HEIGHT, LCD_CS_PIN, LCD_DC_PIN, LCD_RST_PIN, LCD_SPI_DIVISOR, SPI_MODE);
-    qp_init(lcd, QP_ROTATION_0);
+    qp_init(lcd, QP_ROTATION_180);
 
     // Turn on the LCD and clear the display
     qp_power(lcd, true);
-    qp_rect(lcd, 0, 0, LCD_WIDTH, LCD_HEIGHT, 127, 127, 255, true);
-    //qp_flush(lcd);
-    // font = qp_load_font_mem(font_iosevka11);
-    // if (font != NULL) {
-    //     qp_drawtext(lcd, 0, 0, font, "QUANTUM PAINTER @ RP2040");
-    // }
+    //qp_rect(lcd, 0, 0, LCD_WIDTH, LCD_HEIGHT, 0, 0, 255, true);
+    qp_drawimage(lcd, 0, 0, splash);
+    
+
 
     // Offload to the user func
     keyboard_post_init_user();

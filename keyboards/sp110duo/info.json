@@ -12,8 +12,7 @@
         "mousekey": true,
         "extrakey": true,
         "nkro": false,
-        "rgb_matrix": true,
-        "quantum_painter": true
+        "rgb_matrix": true
     },
     "bootmagic": {
         "matrix": [1, 1]

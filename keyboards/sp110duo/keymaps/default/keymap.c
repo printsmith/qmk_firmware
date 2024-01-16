@@ -4,6 +4,7 @@
 #include QMK_KEYBOARD_H
 #include "super_alt_tab.c"
 #include "config.h"
+#include "graphics/qmk_logo.qgf.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* ┌───┬───┬───┬───┐		┌───┐ ┌───┬───┬───┬───┐ ┌───┬───┬───┬───┐ ┌───┬───┬───┬───┐ ┌───┐  ┌───┐ 
