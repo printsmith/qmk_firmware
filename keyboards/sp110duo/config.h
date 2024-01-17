@@ -26,6 +26,7 @@
 
 #define QUANTUM_PAINTER_DISPLAY_TIMEOUT 0   // Milliseconds that display will remain on after last input. 0 to stay on indefinitely.
 #define QUANTUM_PAINTER_SUPPORTS_256_PALETTE TRUE
+#define QUANTUM_PAINTER_SUPPORTS_NATIVE_COLORS TRUE
 //#define QUANTUM_PAINTER_DEBUG TRUE
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
