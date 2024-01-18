@@ -5,8 +5,14 @@
 #include "super_alt_tab.c"
 #include "config.h"
 
-// Layer definitions
-enum { _QWERTY, _ADJUST};
+//----------------------------------------------------------
+// Layer naming
+
+// clang-format off
+enum layer_number {
+    _QWERTY = 0,
+    _FUNC
+};
 
 //----------------------------------------------------------
 // Key map
@@ -40,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_PENT, KC_P3  , KC_P2  , KC_P1  , KC_UP  , KC_LSFT, 		   KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, KC_UP  , KC_END ,
              KC_PDOT, KC_P0  , KC_LEFT, KC_DOWN, KC_RGHT, KC_LCTL, KC_LALT, KC_SPC ,          KC_LWIN,          KC_RSFT,          KC_RALT, MO(1)  , KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT
   ),
-    [_ADJUST] = LAYOUT(
+    [_FUNC] = LAYOUT(
     _______, KC_CAPS, KC_NUM , KC_SCRL,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT,																																										   
     QK_BOOT, QK_RBT , _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
@@ -57,19 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format off
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_QWERTY] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN) },
-    [_ADJUST] = { ENCODER_CCW_CW(RGB_MOD, RGB_MOD), ENCODER_CCW_CW(RGB_VAD, RGB_VAI)           }
+    [_FUNC] = { ENCODER_CCW_CW(RGB_MOD, RGB_MOD), ENCODER_CCW_CW(RGB_VAD, RGB_VAI)           }
 };
 // clang-format on
 
-//----------------------------------------------------------
-// Layer naming
-
-const char *current_layer_name(void) {
-    switch (get_highest_layer(layer_state)) {
-        case _QWERTY:
-            return "qwerty";
-        case _ADJUST:
-            return "adjust";
-    }
-    return "unknown";
-}

@@ -8,7 +8,7 @@
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_LED GP25
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_TIMEOUT 500U
 
-/* SPI Configuration */
+/* SPI Configuration for display */
 #define SPI_DRIVER SPID1
 #define SPI_SCK_PIN GP14
 #define SPI_MOSI_PIN GP11
@@ -18,7 +18,6 @@
 #define LCD_RST_PIN GP13
 #define LCD_CS_PIN GP17
 #define LCD_DC_PIN GP18
-
 #define LCD_WIDTH 240
 #define LCD_HEIGHT 320
 #define LCD_SPI_DIVISOR 16 // tested with 8 as well
@@ -27,7 +26,7 @@
 #define QUANTUM_PAINTER_DISPLAY_TIMEOUT 0   // Milliseconds that display will remain on after last input. 0 to stay on indefinitely.
 #define QUANTUM_PAINTER_SUPPORTS_256_PALETTE TRUE
 #define QUANTUM_PAINTER_SUPPORTS_NATIVE_COLORS TRUE
-//#define QUANTUM_PAINTER_DEBUG TRUE
+#define QUANTUM_PAINTER_LVGL_USE_CUSTOM_CONF
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 //#define DEBOUNCE 5
