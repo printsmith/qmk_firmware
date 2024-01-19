@@ -20,7 +20,7 @@ void display_init_kb(void){
     //qp_set_viewport_offsets (qp_display, 25, 0);
 
     // Turn on the LCD and clear the display
-    //qp_rect(qp_display, 0, 0, LCD_WIDTH, LCD_HEIGHT, 150, 120, 100,true);
+    qp_rect(qp_display, 0, 0, LCD_WIDTH, LCD_HEIGHT, 150, 120, 100,true);
     //qp_rect(qp_display, 0, 0, 80, 160, 0, 0, 0, true);
 
     // Start LVGL
