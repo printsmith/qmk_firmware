@@ -8,5 +8,6 @@ QUANTUM_PAINTER_ENABLE 			= yes
 QUANTUM_PAINTER_DRIVERS 		+= st7735_spi
 QUANTUM_PAINTER_LVGL_INTEGRATION = yes
 OPT_DEFS = -O2 	# workaround for compiling issues for lvgl on Windows
-SRC += lvgl_helpers.c \
-	   display.c
+SRC += 	display.c \
+		ui/ui.c \
+		ui/ui_helpers.c \

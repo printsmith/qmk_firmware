@@ -3,6 +3,7 @@
     "files.associations": {
         "config.h": "c",
         "qmk_logo.qgf.h": "c",
-        "sp110duo.h": "c"
+        "sp110duo.h": "c",
+        "lv_conf.h": "c"
     }
 }

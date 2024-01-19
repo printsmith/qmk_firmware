@@ -27,34 +27,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <qp.h>
 #include <qp_lvgl.h>
+#include "ui/ui.h"
+#include "color.h"
 
-static bool display_enabled;
-
-/* Public function for use in keymaps */
-bool is_display_enabled(void){
-    return display_enabled;
-}
-
-/* Caps Lock processing */
-bool led_update_kb(led_t led_state) {
-    bool res = led_update_user(led_state);
-    if (res && display_enabled) {
-        display_process_caps(led_state.caps_lock);
-    }
-
-    return res;
-}
-
-void housekeeping_task_kb(void) {
-    if (display_enabled) {
-        display_housekeeping_task();
-    }
-
-    housekeeping_task_user();
-}
+#ifdef CONSOLE_ENABLE
+#    include "print.h"
+#endif  // CONSOLE_ENABLE
 
 void keyboard_post_init_kb(void) {
-    display_enabled = false;
+
+    #if CONSOLE_ENABLE
+        debug_enable = true;
+    #endif // CONSOLE_ENABLE
 
     // Enable RGB current limiter and wait for a bit before allowing RGB to continue
     setPinOutput(RGB_ENABLE_PIN);
@@ -65,9 +49,16 @@ void keyboard_post_init_kb(void) {
     wait_ms(150);
 
     // Display is enabled, offload to display init func
-    display_enabled = display_init_kb();
+    display_init_kb();
 
-    // Offload to the user func
+    // Offload to the user func 
     keyboard_post_init_user();
+
+    // Run UI 
+    ui_init();
 }
 
+void housekeeping_task_kb(void) {
+
+    housekeeping_task_user();
+}
