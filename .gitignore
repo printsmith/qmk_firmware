@@ -111,3 +111,6 @@ compile_commands.json
 # VIA(L) files that don't belong in QMK repo
 via*.json
 /keyboards/**/keymaps/vial/*
+keyboards/sp110duo/.vs/VSWorkspaceState.json
+keyboards/sp110duo/.vs/sp110duo/v17/.wsuo
+keyboards/sp110duo/.vs/slnx.sqlite
