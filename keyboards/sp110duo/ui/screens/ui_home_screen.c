@@ -3,36 +3,8 @@
 // LVGL version: 8.3.6
 // Project name: SquareLine_Project
 
-#include "ui.h"
-#include "ui_helpers.h"
-#include "quantum.h"
-#include "../sp110duo/sp110duo.h"
-#include "../sp110duo/display.h"
+#include "../ui.h"
 
-///////////////////// VARIABLES ////////////////////
-
-
-// SCREEN: ui_home_screen
-void ui_home_screen_screen_init(void);
-lv_obj_t * ui_home_screen;
-lv_obj_t * ui_volume;
-lv_obj_t * ui_clock;
-lv_obj_t * ui_time;
-lv_obj_t * ui____initial_actions0;
-
-///////////////////// TEST LVGL SETTINGS ////////////////////
-#if LV_COLOR_DEPTH != 16
-    #error "LV_COLOR_DEPTH should be 16bit to match SquareLine Studio's settings"
-#endif
-#if LV_COLOR_16_SWAP !=1
-    #error "LV_COLOR_16_SWAP should be 1 to match SquareLine Studio's settings"
-#endif
-
-///////////////////// ANIMATIONS ////////////////////
-
-///////////////////// FUNCTIONS ////////////////////
-
-///////////////////// SCREENS ////////////////////
 void ui_home_screen_screen_init(void)
 {
     ui_home_screen = lv_obj_create(NULL);
@@ -63,17 +35,4 @@ void ui_home_screen_screen_init(void)
     lv_label_set_text(ui_time, "00:00");
     lv_obj_set_style_text_font(ui_time, &lv_font_montserrat_32, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-}
-
-void ui_init(void)
-{
-    //LV_EVENT_GET_COMP_CHILD = lv_event_register_id();
-
-    lv_disp_t * dispp = lv_disp_get_default();
-    lv_theme_t * theme = lv_theme_default_init(dispp, lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED),
-                                               true, LV_FONT_DEFAULT);
-    lv_disp_set_theme(dispp, theme);
-    ui_home_screen_screen_init();
-    ui____initial_actions0 = lv_obj_create(NULL);
-    lv_disp_load_scr(ui_home_screen);
 }

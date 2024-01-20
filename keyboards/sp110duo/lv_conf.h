@@ -24,3 +24,9 @@
 #define LV_COLOR_MIX_ROUND_OFS (LV_COLOR_DEPTH == 32 ? 0: 128)
 
 
+/*====================
+   FONT SETTINGS
+ *====================*/
+
+#undef LV_FONT_MONTSERRAT_32
+#define LV_FONT_MONTSERRAT_32 1

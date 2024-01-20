@@ -7,7 +7,6 @@
 #ifdef QUANTUM_PAINTER_ENABLE
 extern painter_device_t qp_display;
 #endif
-
 #include "lv_conf.h"
 
 #pragma pack(push)

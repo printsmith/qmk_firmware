@@ -3,12 +3,19 @@
 // LVGL version: 8.3.6
 // Project name: SquareLine_Project
 
-#ifndef _UI_EVENTS_H
-#define _UI_EVENTS_H
+#ifndef _UI_COMP_TIME_H
+#define _UI_COMP_TIME_H
+
+#include "../ui.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+// COMPONENT time
+#define UI_COMP_TIME_TIME 0
+#define _UI_COMP_TIME_NUM 1
+lv_obj_t * ui_time_create(lv_obj_t * comp_parent);
 
 #ifdef __cplusplus
 } /*extern "C"*/

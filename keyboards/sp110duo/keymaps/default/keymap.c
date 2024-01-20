@@ -7,15 +7,12 @@
 #include "ctype.h"
 #include "color.h"
 #include <qp.h>
+#include "../sp110duo/display.h"
 
 //----------------------------------------------------------
 // Layer naming
 
-// clang-format off
-enum layer_number {
-    _QWERTY = 0,
-    _FUNC = 1
-};
+/* Derived from display.h enum definition*/
 
 //----------------------------------------------------------
 // Key map
