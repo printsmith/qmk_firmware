@@ -12,3 +12,12 @@ extern painter_device_t qp_display;
 
 #pragma pack(push)
 #pragma pack(1)
+
+enum sp110duo_keycodes {
+    RGB_TOG1,
+    LVGL_CLOCKWISE,
+    LVGL_COUNTER_CLOCKWISE,
+    LVGL_ENCODER_BUTTON
+};
+
+void rgb_matrix_increase_flags(void);
