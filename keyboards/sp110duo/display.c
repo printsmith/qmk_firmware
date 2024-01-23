@@ -7,6 +7,9 @@
 #include "config.h"
 #include "ui/ui.h"
 #include "raw_hid.h"
+#include "qp_comms.h"
+#include "qp_st77xx_opcodes.h"
+#include "qp_st7735_opcodes.h"
 
 painter_device_t qp_display;
 
@@ -17,12 +20,16 @@ void display_init_kb(void){
 
     // Initialise the LCD
     qp_display = qp_st7735_make_spi_device(LCD_WIDTH, LCD_HEIGHT, LCD_CS_PIN, LCD_DC_PIN, LCD_RST_PIN, LCD_SPI_DIVISOR, SPI_MODE);
+
     qp_init(qp_display, QP_ROTATION_180);
-    //qp_set_viewport_offsets (qp_display, 25, 0);
+
+    // Invert color command
+    qp_comms_start(qp_display);
+    qp_comms_command(qp_display, ST77XX_CMD_INVERT_ON);
+    qp_comms_stop(qp_display);
 
     // Turn on the LCD and clear the display
     qp_rect(qp_display, 0, 0, LCD_WIDTH, LCD_HEIGHT, 150, 120, 100,true);
-    //qp_rect(qp_display, 0, 0, 80, 160, 0, 0, 0, true);
 
     // Start LVGL
     qp_lvgl_attach(qp_display);

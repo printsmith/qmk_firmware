@@ -6,6 +6,7 @@
         "sp110duo.h": "c",
         "lv_conf.h": "c",
         "ui_helpers.h": "c",
-        "display.h": "c"
+        "display.h": "c",
+        "lvgl_helpers.h": "c"
     }
 }
