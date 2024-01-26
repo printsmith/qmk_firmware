@@ -1,5 +1,6 @@
 # Defs
-VIA_ENABLE 				= yes
+#VIA_ENABLE 				= yes
+RAW_ENABLE 				= yes
 ENCODER_MAP_ENABLE 		= yes
 CUSTOM_MATRIX 			= lite
 SRC 					+= matrix.c
@@ -11,3 +12,4 @@ OPT_DEFS = -O2 	# workaround for compiling issues for lvgl on Windows
 SRC += 	display.c \
 		ui/ui.c \
 		ui/ui_helpers.c \
+		ui/screens/ui_screen_home.c

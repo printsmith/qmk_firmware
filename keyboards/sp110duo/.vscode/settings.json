@@ -8,5 +8,6 @@
         "ui_helpers.h": "c",
         "display.h": "c",
         "lvgl_helpers.h": "c"
-    }
+    },
+    "C_Cpp.dimInactiveRegions": false
 }

@@ -19,4 +19,5 @@ enum sp110duo_keycodes {
     LVGL_ENCODER_BUTTON
 };
 
+bool is_display_enabled(void);
 void rgb_matrix_increase_flags(void);

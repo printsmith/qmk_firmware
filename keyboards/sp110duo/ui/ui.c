@@ -5,19 +5,15 @@
 
 #include "ui.h"
 #include "ui_helpers.h"
-#include "quantum.h"
-#include "../sp110duo/sp110duo.h"
-#include "../sp110duo/display.h"
 
 ///////////////////// VARIABLES ////////////////////
 
 
-// SCREEN: ui_home_screen
-void ui_home_screen_screen_init(void);
-lv_obj_t * ui_home_screen;
-lv_obj_t * ui_volume;
-lv_obj_t * ui_clock;
-lv_obj_t * ui_time;
+// SCREEN: ui_screen_home
+void ui_screen_home_screen_init(void);
+lv_obj_t * ui_screen_home;
+lv_obj_t * ui_label_time;
+lv_obj_t * ui_label_vol_home;
 lv_obj_t * ui____initial_actions0;
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
@@ -33,47 +29,14 @@ lv_obj_t * ui____initial_actions0;
 ///////////////////// FUNCTIONS ////////////////////
 
 ///////////////////// SCREENS ////////////////////
-void ui_home_screen_screen_init(void)
-{
-    ui_home_screen = lv_obj_create(NULL);
-    lv_obj_clear_flag(ui_home_screen, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_home_screen, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_home_screen, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-    ui_volume = lv_label_create(ui_home_screen);
-    lv_obj_set_width(ui_volume, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_volume, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_volume, 0);
-    lv_obj_set_y(ui_volume, 10);
-    lv_obj_set_align(ui_volume, LV_ALIGN_TOP_MID);
-    lv_label_set_text(ui_volume, "Vol: N/A");
-
-    ui_clock = lv_obj_create(ui_home_screen);
-    lv_obj_set_width(ui_clock, 140);
-    lv_obj_set_height(ui_clock, 60);
-    lv_obj_set_align(ui_clock, LV_ALIGN_CENTER);
-    lv_obj_clear_flag(ui_clock, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_clock, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_clock, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-    ui_time = lv_label_create(ui_clock);
-    lv_obj_set_width(ui_time, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_time, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(ui_time, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_time, "00:00");
-    lv_obj_set_style_text_font(ui_time, &lv_font_montserrat_32, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-}
 
 void ui_init(void)
 {
-    //LV_EVENT_GET_COMP_CHILD = lv_event_register_id();
-
     lv_disp_t * dispp = lv_disp_get_default();
     lv_theme_t * theme = lv_theme_default_init(dispp, lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED),
                                                true, LV_FONT_DEFAULT);
     lv_disp_set_theme(dispp, theme);
-    ui_home_screen_screen_init();
+    ui_screen_home_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
-    lv_disp_load_scr(ui_home_screen);
+    lv_disp_load_scr(ui_screen_home);
 }

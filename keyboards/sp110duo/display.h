@@ -10,11 +10,12 @@ typedef enum {
 } layer_number;
 
 typedef enum {
-    _TIME = 0xAA, // random value that does not conflict with VIA, must match companion app
+    _TIME = 0, 
     _VOLUME,
     _LAYOUT
 } hid_data_type;
 
-void display_init_kb(void);
+bool display_init_kb(void);
 void display_process_raw_hid_data(uint8_t *data, uint8_t length);
 void display_process_layer_state(uint8_t layer);
+void display_housekeeping_task(void);

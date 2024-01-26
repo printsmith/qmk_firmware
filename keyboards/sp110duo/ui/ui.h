@@ -23,20 +23,12 @@ extern "C" {
 #endif
 
 #include "ui_helpers.h"
-#include "components/ui_comp.h"
-#include "components/ui_comp_hook.h"
 #include "ui_events.h"
-// SCREEN: ui_home_screen
-void ui_home_screen_screen_init(void);
-extern lv_obj_t * ui_home_screen;
-extern lv_obj_t * ui_volume;
-extern lv_obj_t * ui_caps_lock;
-extern lv_obj_t * ui_num_lock;
-extern lv_obj_t * ui_layer_display;
-extern lv_obj_t * ui_time;
-extern lv_obj_t * ui_hour;
-extern lv_obj_t * ui_minute;
-extern lv_obj_t * ui_Label1;
+// SCREEN: ui_screen_home
+void ui_screen_home_screen_init(void);
+extern lv_obj_t * ui_screen_home;
+extern lv_obj_t * ui_label_time;
+extern lv_obj_t * ui_label_vol_home;
 extern lv_obj_t * ui____initial_actions0;
 
 
