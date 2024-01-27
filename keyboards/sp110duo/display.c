@@ -104,12 +104,17 @@ bool display_init_kb(void){
     qp_comms_stop(qp_display);
 
     // Turn on the LCD and clear the display
-    qp_rect(qp_display, 0, 0, LCD_WIDTH, LCD_HEIGHT, HSV_BLACK, true);
+   //qp_rect(qp_display, 0, 0, LCD_WIDTH, LCD_HEIGHT, HSV_BLACK, true);
     
     // Start LVGL
     qp_lvgl_attach(qp_display);
     dprint("display_init_kb - initialised\n");
     
+    lv_disp_t  *lv_display = lv_disp_get_default();
+    lv_theme_t *lv_theme   = lv_theme_default_init(lv_display, lv_palette_main(LV_PALETTE_AMBER), lv_palette_main(LV_PALETTE_BLUE), true, LV_FONT_DEFAULT);
+    lv_disp_set_theme(lv_display, lv_theme);
+    init_styles();
+
     bool res = display_init_user();
     if (res) {
         dprint("display_init_kb - adding default home screen\n");
