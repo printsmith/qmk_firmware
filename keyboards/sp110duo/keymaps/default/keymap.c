@@ -11,6 +11,18 @@
 #include "../sp110duo/display.h"
 #include "../sp110duo/config.h"
 
+enum layer_number {
+    // clang-format off
+    _QWERTY = 0,
+    _GAME,
+    _NAV,
+    _NUMBER,
+    _SYMBOL,
+    _FUNC,
+    _SYS
+    // clang-format on
+};
+
 //----------------------------------------------------------
 // Layer naming
 
@@ -67,7 +79,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_FUNC]     = { ENCODER_CCW_CW(RGB_MOD, RGB_RMOD), ENCODER_CCW_CW(LVGL_CLOCKWISE, LVGL_COUNTER_CLOCKWISE) }
 };
 // clang-format on
-
+/*
 //----------------------------------------------------------
 // Read Volume Input From Encoder 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -104,3 +116,4 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
         display_process_raw_hid_data(data, length);
     }
 }
+*/
