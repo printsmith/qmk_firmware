@@ -12,6 +12,7 @@
 #include "qp_st7735_opcodes.h"
 #include "lvgl_helpers.h"
 
+<<<<<<< Updated upstream
 
 /* shared styles */
 lv_style_t style_screen;
@@ -55,6 +56,17 @@ void init_styles(void) {
     lv_style_set_bg_color(&style_button_active, lv_palette_main(LV_PALETTE_AMBER));
     lv_style_set_bg_opa(&style_button_active, LV_OPA_100);
     lv_style_set_text_color(&style_button_active, lv_color_black());
+=======
+kb_runtime_config kb_state;
+painter_device_t qp_display;
+
+//----------------------------------------------------------
+// Turn off the LCD if there's been no matrix activity 
+
+void kb_state_update(void) {
+    kb_state.lcd_power = readPin(RGB_ENABLE_PIN);
+    kb_state.lcd_timer = (last_input_activity_elapsed() < LCD_ACTIVITY_TIMEOUT)? 1 : 0;
+>>>>>>> Stashed changes
 }
 
 void init_screen_home(void) {
@@ -91,11 +103,16 @@ void init_screen_home(void) {
 
 //----------------------------------------------------------
 // Initialize Display 
-bool display_init_kb(void){
+
+void display_init_kb(void){
     dprint("display_init_kb - start\n");
  
     // Initialise the LCD
+<<<<<<< Updated upstream
     painter_device_t qp_display = qp_st7735_make_spi_device(LCD_WIDTH, LCD_HEIGHT, LCD_CS_PIN, LCD_DC_PIN, LCD_RST_PIN, LCD_SPI_DIVISOR, SPI_MODE);
+=======
+    qp_display = qp_st7735_make_spi_device(LCD_WIDTH, LCD_HEIGHT, LCD_CS_PIN, LCD_DC_PIN, LCD_RST_PIN, LCD_SPI_DIVISOR, SPI_MODE);
+>>>>>>> Stashed changes
     qp_init(qp_display, QP_ROTATION_180);
 
     // Invert color on the LCD
@@ -104,8 +121,14 @@ bool display_init_kb(void){
     qp_comms_stop(qp_display);
 
     // Turn on the LCD and clear the display
+<<<<<<< Updated upstream
    //qp_rect(qp_display, 0, 0, LCD_WIDTH, LCD_HEIGHT, HSV_BLACK, true);
     
+=======
+    //qp_rect(qp_display, 0, 0, LCD_WIDTH, LCD_HEIGHT, HSV_BLACK, true);
+    dprint("display_init_kb - initialised\n");
+
+>>>>>>> Stashed changes
     // Start LVGL
     qp_lvgl_attach(qp_display);
     dprint("display_init_kb - initialised\n");
@@ -121,9 +144,11 @@ bool display_init_kb(void){
         init_screen_home();
     }
 
-    return true;
+    kb_state.lcd_power = 1;
+    kb_state.lcd_timer = 1;
 }
 
+<<<<<<< Updated upstream
 __attribute__((weak)) bool display_init_user(void) {
     return true;
 }
@@ -140,4 +165,28 @@ __attribute__((weak)) void display_housekeeping_task(void) {
 __attribute__((weak)) void display_process_caps(bool active) {
     dprint("display_process_caps\n");
     toggle_state(label_caps, LV_STATE_PRESSED, active);
+=======
+//----------------------------------------------------------
+// Display Housekeeping
+
+void display_housekeeping_task(void) {
+    // Check keyboard state
+    kb_state_update();    
+/*
+    //static bool lcd_on = false;
+    
+    if ((bool)kb_state.lcd_power && (bool)kb_state.lcd_timer) {
+        // If the RGB en pin is high & activity is registered, LCD is on 
+        //lcd_on = (bool)kb_state.lcd_power;
+    }
+    else if ((bool)kb_state.lcd_power && !(bool)kb_state.lcd_timer){
+        // If the RGB pin is high & no activity is being registered, put LEDs and display to sleep
+        qp_power(qp_display, false);
+        //lcd_on = false;
+    }
+
+
+    dprintf("LCD Power: %d  LCD Timer: %d last input: %lu\n", kb_state.lcd_power, kb_state.lcd_timer, last_input_activity_elapsed());    
+*/
+>>>>>>> Stashed changes
 }

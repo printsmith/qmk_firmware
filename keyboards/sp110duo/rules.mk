@@ -1,6 +1,6 @@
 # Defs
-#VIA_ENABLE 				= yes
-RAW_ENABLE 				= yes
+VIA_ENABLE 				= yes
+#RAW_ENABLE 				= yes
 ENCODER_MAP_ENABLE 		= yes
 CUSTOM_MATRIX 			= lite
 SRC 					+= matrix.c

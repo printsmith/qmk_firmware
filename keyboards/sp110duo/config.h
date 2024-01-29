@@ -33,7 +33,7 @@
 #endif // QUANTUM_PAINTER_ENABLE
 
 #ifndef LCD_ACTIVITY_TIMEOUT
-#    define LCD_ACTIVITY_TIMEOUT 30000
+#    define LCD_ACTIVITY_TIMEOUT 10000
 #endif // LCD_ACTIVITY_TIMEOUT
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
@@ -49,7 +49,6 @@
 
     #define RGB_MATRIX_LED_COUNT 108                // Number of LEDs on board  
     #define RGB_ENABLE_PIN GP28                     // This pin also controls the LCD power
-    #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 50 
     #define RGB_MATRIX_HUE_STEP 8
     #define RGB_MATRIX_SAT_STEP 8
     #define RGB_MATRIX_VAL_STEP 8

@@ -31,6 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <qp.h>
 #include <qp_lvgl.h>
 
+<<<<<<< Updated upstream
 static bool display_enabled;
 
 /* Public function to be used to check if display is active */
@@ -77,23 +78,30 @@ void housekeeping_task_kb(void) {
     housekeeping_task_user();
 }
 
+=======
+>>>>>>> Stashed changes
 void keyboard_post_init_kb(void) {
-    // Initialize display as off
-    display_enabled = false;
-
-    debug_enable=true;
-    
     // Enable RGB current limiter and wait for a bit before allowing RGB to continue.
     setPinOutput(RGB_ENABLE_PIN);
     writePinHigh(RGB_ENABLE_PIN);
-    wait_ms(50);
+    wait_ms(20);
 
     // RGB_EN also controls LCD power, so check if RGB is enabled and then turn on the LCD and offload to display init
-    if(RGB_ENABLE_PIN){
-        display_enabled = display_init_kb();
-    }
+    //if (readPin(RGB_ENABLE_PIN)) {
+        display_init_kb();
+        wait_ms(30);
+    //}
 
     // Offload to the user func 
     keyboard_post_init_user();
 }
 
+<<<<<<< Updated upstream
+=======
+void housekeeping_task_kb(void) {
+
+    #ifdef QUANTUM_PAINTER_ENABLE
+        display_housekeeping_task();
+    #endif //QUANTUM_PAINTER_ENABLE
+}
+>>>>>>> Stashed changes

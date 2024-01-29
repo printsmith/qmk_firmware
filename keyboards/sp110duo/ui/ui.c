@@ -5,15 +5,20 @@
 
 #include "ui.h"
 #include "ui_helpers.h"
-
+#include <sp110duo.h>
+#include <display.h>
 ///////////////////// VARIABLES ////////////////////
 
 
 // SCREEN: ui_screen_home
 void ui_screen_home_screen_init(void);
 lv_obj_t * ui_screen_home;
-lv_obj_t * ui_label_time;
-lv_obj_t * ui_label_vol_home;
+lv_obj_t * ui_panel_mods;
+void ui_event_label_GUI(lv_event_t * e);
+lv_obj_t * ui_label_GUI;
+lv_obj_t * ui_label_ALT;
+lv_obj_t * ui_label_CTRL;
+lv_obj_t * ui_label_SHIFT;
 lv_obj_t * ui____initial_actions0;
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
@@ -27,6 +32,14 @@ lv_obj_t * ui____initial_actions0;
 ///////////////////// ANIMATIONS ////////////////////
 
 ///////////////////// FUNCTIONS ////////////////////
+void ui_event_label_GUI(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    //lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_PRESSED) {
+        _ui_state_modify(ui_label_GUI, LV_STATE_PRESSED, _UI_MODIFY_STATE_TOGGLE);
+    }
+}
 
 ///////////////////// SCREENS ////////////////////
 

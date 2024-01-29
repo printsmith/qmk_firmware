@@ -27,8 +27,12 @@ extern "C" {
 // SCREEN: ui_screen_home
 void ui_screen_home_screen_init(void);
 extern lv_obj_t * ui_screen_home;
-extern lv_obj_t * ui_label_time;
-extern lv_obj_t * ui_label_vol_home;
+extern lv_obj_t * ui_panel_mods;
+void ui_event_label_GUI(lv_event_t * e);
+extern lv_obj_t * ui_label_GUI;
+extern lv_obj_t * ui_label_ALT;
+extern lv_obj_t * ui_label_CTRL;
+extern lv_obj_t * ui_label_SHIFT;
 extern lv_obj_t * ui____initial_actions0;
 
 

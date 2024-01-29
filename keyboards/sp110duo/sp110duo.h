@@ -3,4 +3,7 @@
 
 #pragma once
 
+<<<<<<< Updated upstream
 bool is_display_enabled(void);
+=======
+>>>>>>> Stashed changes
