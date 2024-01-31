@@ -20,8 +20,18 @@ painter_device_t lcd;
 bool display_init_kb(void){
     dprint("display_init_kb - start\n");
  
-    // Initialise the LCD
+    // Create the LCD device
     lcd = qp_st7735_make_spi_device(LCD_WIDTH, LCD_HEIGHT, LCD_CS_PIN, LCD_DC_PIN, LCD_RST_PIN, LCD_SPI_DIVISOR, SPI_MODE);
+
+    return display_on();
+}
+
+//----------------------------------------------------------
+// Display On 
+//----------------------------------------------------------
+
+bool display_on(void) {
+    // Initialize LCD
     qp_init(lcd, QP_ROTATION_180);
 
     // Invert color on the LCD
@@ -31,17 +41,16 @@ bool display_init_kb(void){
 
     // Turn on the LCD and clear the display
     qp_rect(lcd, 0, 0, LCD_WIDTH, LCD_HEIGHT, HSV_BLACK, true);
-    dprint("display_init_kb - initialised\n");
+    dprint("display_on - initialised\n");
 
     // Start LVGL
     qp_lvgl_attach(lcd);
     wait_ms(20);
-    
+
     ui_init();
 
     return true;
 }
-
 //----------------------------------------------------------
 // Display Housekeeping
 //----------------------------------------------------------

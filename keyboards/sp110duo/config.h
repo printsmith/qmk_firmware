@@ -53,6 +53,8 @@
     #define RGB_MATRIX_SAT_STEP 8
     #define RGB_MATRIX_VAL_STEP 8
     #define RGB_MATRIX_SPD_STEP 10
+    #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 90
+    #define RGB_MATRIX_DEFAULTVL 30
 
     // RGB animations
     #define ENABLE_RGB_MATRIX_ALPHAS_MODS            // Static dual hue, speed is hue for secondary hue

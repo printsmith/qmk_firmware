@@ -11,5 +11,6 @@
 #define MODS_GUI ((get_mods() | get_oneshot_mods()) & MOD_MASK_GUI)
 
 bool display_init_kb(void);
+bool display_on(void);
 void display_housekeeping_task(void);
 void lvgl_event_triggers(void);
