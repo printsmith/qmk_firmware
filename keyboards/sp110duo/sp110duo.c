@@ -45,7 +45,10 @@ void keyboard_post_init_kb(void) {
     // Initialize display as off
     display_enabled = false;
 
-    debug_enable=true;
+    // Enable debug if console is defined in info.json
+    #ifdef CONSOLE_ENABLE
+        debug_enable=true;
+    #endif
     
     // Enable RGB current limiter and wait for a bit before allowing RGB to continue.
     // In next board version, this will be an RC timer circuit and not have GPIO control
@@ -81,7 +84,7 @@ void housekeeping_task_kb(void) {
             wait_ms(10);
             rgb_matrix_enable_noeeprom();            
         }
-        // Check display sttus
+        // Check display status
         if (is_display_enabled()) {
             // If display is on, continue with display housekeeping
             display_housekeeping_task();
