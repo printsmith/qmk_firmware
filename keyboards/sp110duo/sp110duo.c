@@ -24,14 +24,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "stdlib.h"
 #include "config.h"
 #include "display.h"
-//#include "ui/ui.h"
+#include "ui/ui.h"
 #include "color.h"
 #include "print.h"
 
 #include <qp.h>
 #include <qp_lvgl.h>
 
-<<<<<<< Updated upstream
 static bool display_enabled;
 
 /* Public function to be used to check if display is active */
@@ -39,69 +38,40 @@ bool is_display_enabled(void){
     return display_enabled;
 }
 
-/* default encoder keys */
-bool encoder_update_kb(uint8_t index, bool clockwise) {
-    if (!encoder_update_user(index, clockwise)) {
-        return false;
-    }
-    if (index == 0) {
-        if (clockwise) {
-            tap_code_delay(KC_VOLU, 10);
-        } else {
-            tap_code_delay(KC_VOLD, 10);
-        }
-    } else if (index == 1) {
-        if (clockwise) {
-            tap_code_delay(KC_RIGHT, 10);
-        } else {
-            tap_code_delay(KC_LEFT, 10);
-        }
-    }
-    return true;
-}
-
-/* Caps Lock processing */
-bool led_update_kb(led_t led_state) {
-    bool res = led_update_user(led_state);
-    if (res && display_enabled) {
-        display_process_caps(led_state.caps_lock);
-    }
-
-    return res;
-}
-
-void housekeeping_task_kb(void) {
-    if (display_enabled){
-        display_housekeeping_task();
-    }
-
-    housekeeping_task_user();
-}
-
-=======
->>>>>>> Stashed changes
+//----------------------------------------------------------
+// Initialise Keyboard 
+//----------------------------------------------------------
 void keyboard_post_init_kb(void) {
+    // Initialize display as off
+    display_enabled = false;
+
+    debug_enable=true;
+    
     // Enable RGB current limiter and wait for a bit before allowing RGB to continue.
+    // In next board version, this will be an RC timer circuit and not have GPIO control
     setPinOutput(RGB_ENABLE_PIN);
     writePinHigh(RGB_ENABLE_PIN);
-    wait_ms(20);
+    wait_ms(50);
 
-    // RGB_EN also controls LCD power, so check if RGB is enabled and then turn on the LCD and offload to display init
-    //if (readPin(RGB_ENABLE_PIN)) {
-        display_init_kb();
-        wait_ms(30);
-    //}
+    // LCD PWR piggybacks on RGB_ENABLE_PIN for now, will change in next rev
+    if(readPin(RGB_ENABLE_PIN)){
+        // Call display initalization function in display.c
+        display_enabled = display_init_kb();
+    }
 
-    // Offload to the user func 
-    keyboard_post_init_user();
+    // Allow for user post-init
+    //keyboard_post_init_user();
+
 }
 
-<<<<<<< Updated upstream
-=======
+//----------------------------------------------------------
+// Housekeeping
+//----------------------------------------------------------
 void housekeeping_task_kb(void) {
-
-    #ifdef QUANTUM_PAINTER_ENABLE
+    if (is_display_enabled()) {
+        // If display is on, continue with display housekeeping
         display_housekeeping_task();
-    #endif //QUANTUM_PAINTER_ENABLE
+    }
+
 }
->>>>>>> Stashed changes
+

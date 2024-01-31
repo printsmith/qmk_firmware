@@ -27,26 +27,6 @@ enum layer_number {
 // Key map
 
 // clang-format off
-
-  // This is the default QWERTY Layout 
-<<<<<<< Updated upstream
-    /* ┌───┬───┬───┬───┐		┌───┐ ┌───┬───┬───┬───┐ ┌───┬───┬───┬───┐ ┌───┬───┬───┬───┐ ┌───┐  ┌───┐ 
-     * │Kn1│F13│F14│F15│		│Esc│ │ F1│ F2│ F3│ F4│ │ F5│ F6│ F7│ F8│ │ F9│F10│F11│F12│ │Del│  │Mod│ 
-     * └───┴───┴───┴───┘		└───┘ └───┴───┴───┴───┘ └───┴───┴───┴───┘ └───┴───┴───┴───┘ └───┘  └───┘ 
-     * ┌───┬───┬───┬───┐		┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────────┐  ┌───┐
-     * │ - │ * │ / │NmL│		│ ~ │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ - │ = │ Backspace │  │Pup│
-     * ├───┼───┼───┼───┤		├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────────┤  ├───┤
-     * │   │ 9 │ 8 │ 7 │		│Tab  │ Q │ W │ E │ R │ T │ Y │ U │ I │ O │ P │ [ │ ] │   \     │  │Pdn│
-     * │ + ├───┼───┼───┤ ┌───┐	├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────────┤  ├───┤
-     * │   │ 6 │ 5 │ 4 │ │Kn2│	│Caps  │ A │ S │ D │ F │ G │ H │ J │ K │ L │ ; │ ' │ Return     │  │Hom│
-     * ├───┼───┼───┼───┤ └───┘  ├──────┴──┬┴──┬┴──┬┴──┬┴──┬┴──┬┴──┬┴──┬┴──┬┴──┬┴──┬┴──────┬─────┘  ├───┤
-     * │   │ 3 │ 2 │ 1 │ ┌───┐	│Shift    │ Z │ X │ C │ V │ B │ N │ M │ , │ . │ / │Shift  │  ┌───┐ │End│
-     * │ENT├───┼───┼───┘ │Up │  └───┬─────┼───┴─┬─┴───┴───┴┬──┴─┬─┴───┴──┬┴──┬┴──┬┴──┬────┘  │Up │ └───┘
-     * │   │ . │ 0 │ ┌───┼───┼───┐  │Ctrl │Alt  │ Space    │Win │        │Alt│Fn │Ctl│   ┌───┼───┼───┐
-	 * └───┴───┴───┘ │Lft│Dn │Rht│  └─────┴─────┴──────────┴────┴────────┴───┴───┴───┘   │Lft│Dn │Rht│
-	 *				 └───┴───┴───┘                                                       └───┴───┴───┘
-	 */ 
-=======
   /* ┌───┬───┬───┬───┐		  ┌───┐ ┌───┬───┬───┬───┐ ┌───┬───┬───┬───┐ ┌───┬───┬───┬───┐ ┌───┐  ┌───┐ 
    * │Kn1│F13│F14│F15│		  │Esc│ │ F1│ F2│ F3│ F4│ │ F5│ F6│ F7│ F8│ │ F9│F10│F11│F12│ │Del│  │Mod│ 
    * └───┴───┴───┴───┘		  └───┘ └───┴───┴───┴───┘ └───┴───┴───┴───┘ └───┴───┴───┴───┘ └───┘  └───┘ 
@@ -63,7 +43,6 @@ enum layer_number {
    * └───┴───┴───┘ │Lft│Dn │Rht│  └─────┴─────┴──────────┴────┴────────┴───┴───┴───┘   │Lft│Dn │Rht│
    *			   └───┴───┴───┘                                                       └───┴───┴───┘
    */ 
->>>>>>> Stashed changes
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
@@ -78,11 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, KC_CAPS, KC_NUM , KC_SCRL,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_TOG,																																										   
     QK_BOOT, QK_RBT , QK_MAKE, _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-<<<<<<< Updated upstream
-             _______, _______, _______, KC_ENT , _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, 		     _______, 
-=======
-             _______, _______, _______, KC_ENT,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, 		     _______, 
->>>>>>> Stashed changes
+             _______, _______, _______, KC_ENT , _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, 		   _______, 
     _______, _______, _______, _______, _______, _______, 		   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
              _______, _______, _______, _______, _______, _______, _______, _______,          _______,          _______,          _______, _______, _______, _______, _______, _______
   )
@@ -97,51 +72,3 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_FUNC]     = BASE_ENCODERS //{ ENCODER_CCW_CW(RGB_MOD, RGB_RMOD), ENCODER_CCW_CW(LVGL_CLOCKWISE, LVGL_COUNTER_CLOCKWISE) }
 };
 // clang-format on
-<<<<<<< Updated upstream
-/*
-//----------------------------------------------------------
-// Read Volume Input From Encoder 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    dprintf("process_record_user %u %s %s %d\n", keycode, record->event.pressed ? "pressed" : "depressed", record->tap.interrupted ? "interrupted" : "not interrupted", record->tap.count);
-
-    if (record->event.pressed) {
-        uint8_t data[32];
-        data[0] = 0;
-
-        switch (keycode) {
-            // send hid commands
-            case KC_VOLU:
-            case KC_VOLD:
-                data[0] = _VOLUME;
-                break;
-        }
-
-        if (data[0]) {
-            dprintf("raw_hid_send %u\n", data[0]);
-            raw_hid_send(data, sizeof(data));
-        }
-    }
-
-    return true;
-}
-
-//----------------------------------------------------------
-// Process Raw HID data 
-
-void raw_hid_receive(uint8_t *data, uint8_t length) {
-    dprintf("raw_hid_receive - received %u bytes \n", length);
-
-    if(is_display_enabled()){
-        display_process_raw_hid_data(data, length);
-    }
-=======
-
-void keyboard_post_init_user(void) {
-    #ifdef CONSOLE_ENABLE
-        debug_enable = true;
-        debug_matrix = true;
-        debug_keyboard=true;
-    #endif
->>>>>>> Stashed changes
-}
-*/

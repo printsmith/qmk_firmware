@@ -28,7 +28,6 @@ extern "C" {
 void ui_screen_home_screen_init(void);
 extern lv_obj_t * ui_screen_home;
 extern lv_obj_t * ui_panel_mods;
-void ui_event_label_GUI(lv_event_t * e);
 extern lv_obj_t * ui_label_GUI;
 extern lv_obj_t * ui_label_ALT;
 extern lv_obj_t * ui_label_CTRL;

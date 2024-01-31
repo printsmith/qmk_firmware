@@ -2,8 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #pragma once
+#include "quantum.h"
+#include "lv_conf.h"
 
-<<<<<<< Updated upstream
 bool is_display_enabled(void);
-=======
->>>>>>> Stashed changes
