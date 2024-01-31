@@ -12,7 +12,6 @@
 #include "qp_st77xx_opcodes.h"
 #include "qp_st7735_opcodes.h"
 
-
 painter_device_t lcd;
 
 //----------------------------------------------------------
@@ -36,9 +35,10 @@ bool display_init_kb(void){
 
     // Start LVGL
     qp_lvgl_attach(lcd);
-
-    ui_init();
+    wait_ms(20);
     
+    ui_init();
+
     return true;
 }
 

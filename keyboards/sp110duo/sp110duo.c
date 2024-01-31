@@ -54,10 +54,8 @@ void keyboard_post_init_kb(void) {
     wait_ms(50);
 
     // LCD PWR piggybacks on RGB_ENABLE_PIN for now, will change in next rev
-    if(readPin(RGB_ENABLE_PIN)){
-        // Call display initalization function in display.c
-        display_enabled = display_init_kb();
-    }
+    // Call display initalization function in display.c
+    display_enabled = display_init_kb();
 
     // Allow for user post-init
     //keyboard_post_init_user();
