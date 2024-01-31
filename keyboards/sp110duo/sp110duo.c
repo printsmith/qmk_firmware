@@ -99,6 +99,6 @@ void housekeeping_task_kb(void) {
         // Set display enabled flag to false
         display_enabled = false;
     }
-    dprintf("Activity: %lu Peripherals On: %u Display Enabled: %u RGB_EN: %lu\n",last_input_activity_elapsed(), peripherals_on, display_enabled, readPin(RGB_ENABLE_PIN));
+    dprintf("Activity: %lu Peripherals On: %u Display Enabled: %u\n",last_input_activity_elapsed(), peripherals_on, display_enabled);
 }
 

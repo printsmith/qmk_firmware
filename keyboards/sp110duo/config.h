@@ -33,7 +33,7 @@
 #endif // QUANTUM_PAINTER_ENABLE
 
 #ifndef LCD_ACTIVITY_TIMEOUT
-#    define LCD_ACTIVITY_TIMEOUT 10000
+#    define LCD_ACTIVITY_TIMEOUT 30000
 #endif // LCD_ACTIVITY_TIMEOUT
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
