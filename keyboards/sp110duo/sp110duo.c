@@ -66,10 +66,42 @@ void keyboard_post_init_kb(void) {
 // Housekeeping
 //----------------------------------------------------------
 void housekeeping_task_kb(void) {
-    if (is_display_enabled()) {
-        // If display is on, continue with display housekeeping
-        display_housekeeping_task();
-    }
 
+    // Flag for turning on and off peripherals (LCD & RGB)
+    bool peripherals_on = last_input_activity_elapsed() < LCD_ACTIVITY_TIMEOUT;   
+
+    // Enable/Diable peripherals
+    if (peripherals_on) {
+        // Check status of RGB en pin
+        if (!readPin(RGB_ENABLE_PIN)) {
+            // If pin is low, turn on the RGB pin, otherwise it's already on
+            writePinHigh(RGB_ENABLE_PIN);
+            wait_ms(50);
+            // Since the pin was low, display needs to be initialized, so set flag to false
+            display_enabled= false;
+        }
+        if (rgb_matrix_is_enabled() != peripherals_on) {
+            // Enable RGB
+            rgb_matrix_enable_noeeprom();            
+        }
+        // Check display sttus
+        if (is_display_enabled()) {
+            // If display is on, continue with display housekeeping
+            display_housekeeping_task();
+        } else {
+            // If display is off, call display initalization function in display.c
+            //display_enabled = display_init_kb();     THIS LINE FREEZES THE KEYBOARD    
+        }
+    } else {
+        // Turn off RGB pin
+        writePinLow(RGB_ENABLE_PIN);
+        // Disable PWM output for RGB
+        if (rgb_matrix_is_enabled() != peripherals_on) {
+            rgb_matrix_disable_noeeprom();
+        }
+        // Set display enabled flag to false
+        display_enabled = false;
+    }
+    dprintf("Activity: %lu Peripherals On: %u\n",last_input_activity_elapsed(), peripherals_on);
 }
 
